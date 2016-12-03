@@ -1,0 +1,17 @@
+{
+  "presets": ["es2015", "latest", "react"],
+  "plugins": [
+    "react-hot-loader/babel",
+    "syntax-trailing-function-commas",
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    "transform-async-to-generator",
+    "transform-es2015-destructuring",
+    "transform-es2015-parameters",
+    "transform-es2015-duplicate-keys",
+    "transform-es2015-modules-commonjs",
+    "transform-object-rest-spread",
+    "transform-runtime",
+    "babel-root-import"
+  ]
+}

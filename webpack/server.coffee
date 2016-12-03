@@ -1,0 +1,5 @@
+
+
+
+webpackConfig =
+  target: 'node'
