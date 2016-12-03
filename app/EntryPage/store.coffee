@@ -32,3 +32,19 @@ class EntryPageStore
 
 
 module.exports = EntryPageStore
+
+
+
+
+
+
+#
+#
+#
+#
+#
+#
+#if @props.location.state?
+#  <Redirect to={@props.location.state.from} />
+#          else
+#            <Redirect to={{pathname: '/dashboard', state: { user: 'busty'}}} />

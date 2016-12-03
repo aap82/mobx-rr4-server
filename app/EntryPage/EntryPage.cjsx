@@ -4,7 +4,7 @@ React = require 'react'
 Redirect = require('react-router/Redirect').default
 actions = require './actions'
 LoginModal = require('../components/LoginModal').default
-
+Loading = require('react-loading')
 
 
 
@@ -25,20 +25,13 @@ class EntryPage extends React.Component
     console.log username, password
 
   render: ->
-    {redirectToReferrer, loginRequired, isLoading} = @props.entryPage
+    {currentView} = @props.entryPage
     <div className="entry-page">
       <div className="entry-container">
        {
-        if redirectToReferrer
-          if @props.location.state?
-            <Redirect to={@props.location.state.from} />
-          else
-            <Redirect to={{pathname: '/dashboard', state: { user: 'busty'}}} />
-        else if loginRequired
-          <LoginModal onLogin={@onLoginSubmit}/>
-
-        else if isLoading
-          <div>LOADING</div>
+        switch currentView
+          when 'Login' then <LoginModal onLogin={@onLoginSubmit}/>
+          when 'Loading' then <Loading type="spokes" color="#5BC0BE"/>
        }
       </div>
     </div>
