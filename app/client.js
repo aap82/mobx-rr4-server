@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import App from './app';
+import Root from './root';
 import configureStore from './store';
 
 const rootEl = document.getElementById('root');
@@ -10,14 +10,14 @@ const stores = configureStore()
 
 ReactDOM.render(
   <AppContainer>
-    <App stores={stores}/>
+    <Root stores={stores}/>
   </AppContainer>,
   rootEl
 );
 
 if (module.hot) {
-  module.hot.accept('./app', () => {
-    const NextRoot = require('./app').default
+  module.hot.accept('./root', () => {
+    const NextRoot = require('./root').default
     ReactDOM.render(
       <AppContainer>
         <NextRoot stores={stores} />

@@ -10,10 +10,10 @@ class EntryPageStore
       loginCompleted: no
       currentView: computed(->
         if @loginCompleted
-          return 'Done'
+          return 'Ready'
         if @loginRequired
           return 'Login'
-        if @isLoading
+        else
           return 'Loading'
       )
     }
@@ -24,14 +24,11 @@ class EntryPageStore
 
   saveToken: (token) ->
     if token? then localStorage.setItem('dashboard-token', token)
+    return
 
 
 
-
-
-
-
-module.exports = EntryPageStore
+module.exports = new EntryPageStore()
 
 
 

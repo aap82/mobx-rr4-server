@@ -1,1 +1,6 @@
 /node_modules/
+/db.development.sqlite
+/.idea/
+/yarn-error.log
+/.yarnclean
+/yarn.lock

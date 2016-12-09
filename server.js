@@ -3,15 +3,16 @@ require('./config/global');
 var getenv = require('getenv');
 var path = require('path');
 var webpack = require('webpack');
+var proxy = require('express-http-proxy')
 var express = require('express');
 var devMiddleware = require('webpack-dev-middleware');
 var hotMiddleware = require('webpack-hot-middleware');
 var config = require('./webpack/config');
-
+var apihost = ['http://', getenv('API_HOST'), ':', getenv('API_PORT')].join('')
 
 var app = express();
 var compiler = webpack(config);
-
+app.use('/api', proxy(apihost));
 app.use(devMiddleware(compiler, {
   publicPath: config.output.publicPath,
   historyApiFallback: true,

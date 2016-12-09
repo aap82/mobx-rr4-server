@@ -3,7 +3,7 @@ getenv = require 'getenv'
 webpack = require('webpack')
 BrowserSyncPlugin  = require 'browser-sync-webpack-plugin'
 webhost = ['http://', getenv('WEB_HOST'), ':', getenv('WEB_PORT')].join('')
-
+console.log paths.app
 module.exports =
   devtool: 'cheap-module-source-map'
   entry: [
@@ -53,16 +53,31 @@ module.exports =
       }
       {
         test: /\.css$/,
-        loaders: ['style', 'css', 'postcss']
-#        include: paths.app
+        loaders: [
+          'style-loader'
+          'css-loader'
+          'postcss-loader'
+          'sass-loader'
+        ]
       }
       {
-        test: /\.scss$/
-        loaders: ['style', 'css', 'postcss', 'sass']
-        include: paths.app
+        test: /\.scss$/,
+        loaders: [
+          'style-loader',
+          'css-loader',
+          'postcss-loader'
+          'sass-loader'
+        ]
       }
+
     ]
 
+  sassLoader: {
+    includePaths: [
+      paths.app
+      paths.node_modules
+    ]
+  },
   postcss: ->
     [
       require('autoprefixer')()
@@ -71,6 +86,7 @@ module.exports =
       require('postcss-url')()
       require('precss')()
       require('cssnano')()
+      require('lost')()
       require('postcss-flexbugs-fixes')()
       require('postcss-custom-properties')()
       require('postcss-custom-media')()

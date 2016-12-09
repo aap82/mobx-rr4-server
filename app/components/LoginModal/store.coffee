@@ -15,4 +15,5 @@ class LoginModalStore
     }
 
 
-module.exports = LoginModalStore
+
+module.exports = new LoginModalStore()

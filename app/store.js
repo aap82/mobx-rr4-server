@@ -1,35 +1,26 @@
 import { observable, computed, action } from 'mobx';
 import { fromPromise } from 'mobx-utils';
-import EntryPageStore from './EntryPage/store';
-import LoginModalStore from './components/LoginModal/store';
-
-
-class AppStore {
-  @observable user;
-  @observable isAuthenticated = false;
-  @observable isActive = false;
-  @observable isVisible = false;
-
-  @action
-  updateUser(user = '') {
-    this.user = user;
-  }
-
-
-}
-
+import entryPageStore from './EntryPage/store';
+import dashboardStore from './components/Dashboard/store';
+import loginModalStore from './components/LoginModal/store';
+import appBarStore from './components/AppBar/store'
+import sideNavStore from './components/SideNav/store'
+import sideMenuStore from './components/SideMenu/store'
+import AppStore from './MainApp/store'
+export const appStore = new AppStore();
 
 export default function (initialState = {}) {
-  const appStore = new AppStore();
-  const entryPageStore = new EntryPageStore();
-  const loginModalStore = new LoginModalStore();
   const stores = {
     app: appStore,
     entryPage: entryPageStore,
     loginModal: loginModalStore,
+    dashboard: dashboardStore,
+    appBar: appBarStore,
+    sideNav: sideNavStore,
+    sideMenu: sideMenuStore
   }
 
   return stores;
 
-}
+};
 
