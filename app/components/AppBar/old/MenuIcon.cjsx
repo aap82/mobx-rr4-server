@@ -11,6 +11,9 @@ class MenuIcon extends React.Component
         <div className="hamburger-inner"></div>
       </div>
     </div>
+<Button className="app-button" basic large floated="right" content="Settings" />
+        <Button className="app-button" basic large floated="right" content="Settings" />
+        <Button className="app-button" basic large floated="right" content="Settings" />
 
 
 `export default (observer(MenuIcon))`

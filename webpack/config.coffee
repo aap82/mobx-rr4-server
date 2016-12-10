@@ -69,6 +69,16 @@ module.exports =
           'sass-loader'
         ]
       }
+      {
+        test: /\.(jpg|png|svg)(\?.+)?$/,
+        loader: 'url-loader?limit=100000'
+        include: paths.app
+      }
+      {
+        test: /\.(ttf|otf|eot|woff2?)(\?.+)?$/
+        loader: 'file-loader'
+        include: paths.app
+      }
 
     ]
 

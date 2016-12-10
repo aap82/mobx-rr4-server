@@ -5,11 +5,29 @@ class AppBarStore
   constructor: () ->
     extendObservable @, {
       title: ''
+      isMainMenuOpen: yes
       isSettingsMenuOpen: no
+      isEditMenuOpen: no
       isVisible: yes
-      toggleSettingsMenu: action(->
-        @isSettingsMenuOpen = !@isSettingsMenuOpen
+
+      toggleSettingsMenu: action((open) ->
+        if open?
+          @isSettingsMenuOpen = open
+        else
+          @isSettingsMenuOpen = !@isSettingsMenuOpen
+        return
       )
+
+      toggleEditMenu: action((open) ->
+        if open?
+          @isEditMenuOpen = open
+        else
+          @isEditMenuOpen = !@isEditMenuOpen
+        @isMainMenuOpen = !@isEditMenuOpen
+        return
+      )
+
+
       show: action(->
         @isVisible = yes
       )

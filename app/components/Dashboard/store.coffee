@@ -8,20 +8,17 @@ class DashboardStore extends CrudStore
     @service = DashboardService.getInstance()
     @name = 'dashboard'
     @refCount = 0
+    @layout
 
     extendObservable @, {
-      cols: 12
+      cols: 10
       isResizable: no
-      toggleResizable: action(->
-        @isResizeable= !@isResizeable
-        return
-      )
-
       isDraggable: no
-      toggleDraggable: action(->
-        @isDraggable = !@isDraggable
-        return
-      )
+
+      layout: null
+      toggleResizable: action(-> @isResizeable= !@isResizeable)
+      toggleDraggable: action(-> @isDraggable = !@isDraggable)
+
     }
 
 

@@ -2,10 +2,10 @@ require './style.scss'
 React = require 'react'
 Sidebar = require('react-sidebar').default
 {inject, observer} = require 'mobx-react'
-SideMenu = require('../SideMenu/SideMenu').default
+#SideMenu = require('../SideMenu/SideMenu').default
 actions = require './actions'
 
-APPBARHEIGHT = 65
+APPBARHEIGHT = 45
 styles =
       root:
         height: "100%"
@@ -21,7 +21,7 @@ styles =
 
 
 SideBarContent = (
-  <SideMenu />
+  <div>Hi</div>
 )
 
 

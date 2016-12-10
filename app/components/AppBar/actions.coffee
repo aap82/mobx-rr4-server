@@ -1,8 +1,18 @@
 dashboardStore = require '../Dashboard/store'
-sideNavStore = require '../SideNav/store'
 appBarStore = require './store'
 
-exports.toggleSideNav = () -> return sideNavStore.toggle()
-exports.settingsMenuToggle = ->
-  dashboardStore.toggleDraggable()
+exports.openSettingsMenu = ->
+  appBarStore.toggleSettingsMenu(yes)
+  return
+
+exports.closeSettingsMenu = ->
+  appBarStore.toggleSettingsMenu(no)
+  return
+
+
+exports.openEditMenu = ->
+  appBarStore.toggleEditMenu(yes)
+  return
+exports.closeEditMenu = ->
+  appBarStore.toggleEditMenu(no)
   return

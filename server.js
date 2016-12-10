@@ -31,6 +31,8 @@ app.use(devMiddleware(compiler, {
 
 app.use(hotMiddleware(compiler));
 
+app.use('/semantic', express.static('/home/amit/mobx/semantic-ui/semantic/dist'))
+
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
