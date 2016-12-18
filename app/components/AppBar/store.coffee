@@ -1,22 +1,11 @@
-{extendObservable, action, transaction, computed} = require 'mobx'
+{extendObservable, action, transaction} = require 'mobx'
 
 
 class AppBarStore
   constructor: () ->
     extendObservable @, {
-      title: ''
-      isMainMenuOpen: yes
-      isSettingsMenuOpen: no
       isEditMenuOpen: no
       isVisible: yes
-
-      toggleSettingsMenu: action((open) ->
-        if open?
-          @isSettingsMenuOpen = open
-        else
-          @isSettingsMenuOpen = !@isSettingsMenuOpen
-        return
-      )
 
       toggleEditMenu: action((open) ->
         if open?
@@ -26,8 +15,6 @@ class AppBarStore
         @isMainMenuOpen = !@isEditMenuOpen
         return
       )
-
-
       show: action(->
         @isVisible = yes
       )
@@ -38,9 +25,3 @@ class AppBarStore
     }
 
 module.exports = new AppBarStore()
-
-#<div className="col-xs-3">
-#<MenuIcon
-#onClick={toggleSideNav}
-#sideNav={@props.sideNav} />
-#        </div>

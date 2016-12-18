@@ -1,5 +1,7 @@
 DataType = require 'sequelize'
 Model = require '../sequelize'
+{attributeFields} = require 'graphql-sequelize'
+
 
 User = Model.define('User', {
   username:
@@ -11,5 +13,8 @@ User = Model.define('User', {
     allowNull: false
     unique: no
 })
+
+
+
 
 module.exports = User

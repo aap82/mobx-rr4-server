@@ -11,7 +11,8 @@
     padding: 0;
     height: 45px;
     overflow-y: hidden!important;
-    margin-left: 0;
+    margin: 0;
+
 
   }
 
@@ -20,8 +21,16 @@
     padding: 0;
     max-height: 100%;
     overflow-y: hidden!important;
-    margin-left: 0;
+    margin-right: 0;
 
+  }
+
+  .settings-label {
+    //max-width: 50%!important;
+    //min-width: 50%!important;
+    padding: 0;
+    margin: 0!important;
+    max-height: 100%;
   }
 
   .app-button {
@@ -39,8 +48,27 @@
       color: #fff;
     }
 
+
   }
 
 
 
-}
+
+
+
+.dashboard-settings-item {
+  max-width: 100px!important;
+  background: transparent!important;
+  background-color: transparent!important;
+
+  color: #fff!important;
+
+  &:focus,
+  &:active,
+  &::selection {
+    text-align: right;
+    background-color: transparent;
+    color: #fff!important;
+  }
+
+}}

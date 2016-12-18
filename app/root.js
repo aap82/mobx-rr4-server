@@ -1,14 +1,19 @@
 import './style.scss'
 import './styles/dist/semantic.min.css'
-
+import BrowserRouter from 'react-router/BrowserRouter'
 import React from 'react'
 import { Provider } from 'mobx-react'
 import App from './App';
 
 
-const Root = ({stores}) => (
+
+const ClientRoot = ({stores}) => (
   <Provider {...stores}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>
 );
-export default Root;
+export default ClientRoot;
+
+

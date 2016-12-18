@@ -1,7 +1,6 @@
 require './style.scss'
 React = require 'react'
 MenuSections = require('./MenuSections').default
-{ Sidebar, Segment}  = require('semantic-ui-react')
 {inject, observer} = require 'mobx-react'
 actions = require './actions'
 
@@ -14,7 +13,9 @@ class AppBar extends React.Component
       <MenuSections appBar={appBar} />
     </div>
 
-  toggleSideNav = () => return actions.toggleSideNav()
+  toggleSideNav = () ->
+    actions.toggleSideNav()
+    return
 
 
 `export default inject('appBar', 'sideNav')(observer(AppBar))`

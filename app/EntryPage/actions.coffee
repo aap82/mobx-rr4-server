@@ -2,7 +2,7 @@
 entryPage = require './store'
 {appStore} = require '../store'
 axios = require 'axios'
-
+{test} = require('./graphql')
 
 
 loginAuthorized = (user) ->
@@ -13,6 +13,7 @@ loginAuthorized = (user) ->
 
   entryPage.loginRequired = no
   entryPage.loginCompleted = yes
+
   return
 
 loginSubmitted = ->
@@ -22,6 +23,7 @@ loginSubmitted = ->
 
 loginRequired = ->
   entryPage.loginRequired = yes
+
   return
 
 checkToken = (token) ->
@@ -30,7 +32,7 @@ checkToken = (token) ->
   }).then (res) ->
     entryPage.isLoading = no
     console.log 'this was the respone for check token'
-    console.log res.data
+    test res.data.id
     return setTimeout((=> loginAuthorized(res.data.user)), 1000)
   .catch (err) ->
     entryPage.isLoading = no

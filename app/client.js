@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import Root from './root';
+import ClientRoot from './root';
 import configureStore from './store';
 
 const rootEl = document.getElementById('root');
@@ -10,7 +10,7 @@ const stores = configureStore()
 
 ReactDOM.render(
   <AppContainer>
-    <Root stores={stores}/>
+    <ClientRoot stores={stores}/>
   </AppContainer>,
   rootEl
 );

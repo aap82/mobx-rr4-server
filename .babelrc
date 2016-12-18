@@ -1,5 +1,5 @@
 {
-  "presets": ["es2015", "latest", "react"],
+  "presets": ["es2015", "stage-0", "react"],
   "plugins": [
     "react-hot-loader/babel",
     "syntax-trailing-function-commas",
@@ -12,6 +12,8 @@
     "transform-es2015-modules-commonjs",
     "transform-object-rest-spread",
     "transform-runtime",
+    "add-module-exports",
+    "transform-react-display-name",
     "babel-root-import"
   ]
 }

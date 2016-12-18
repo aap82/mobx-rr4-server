@@ -6,7 +6,7 @@ actions = require './actions'
 LoginModal = require('../components/LoginModal').default
 Loading = require('react-loading')
 
-
+onLoginSubmit = ({username, password}) => actions.login(username, password)
 CurrentView = (observer(({entryPage}) => (
     switch entryPage.currentView
       when 'Ready' then <Redirect to={{pathname: '/dashboard'}} />
