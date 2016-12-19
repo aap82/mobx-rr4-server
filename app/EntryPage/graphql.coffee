@@ -1,5 +1,5 @@
 {transaction} = require 'mobx'
-fetch = require('graphql-fetch')('/api/graphql')
+fetch = require('graphql-fetch')('/graphql')
 gridStore = require '../components/Dashboard/gridStore'
 query = "
   query q ($id: Int!) {

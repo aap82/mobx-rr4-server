@@ -1,7 +1,7 @@
 device = require('express-device')
 config = require('./config')
 {connect} = require './database/models'
-httpProxy = require 'http-proxy'
+#httpProxy = require 'http-proxy'
 express = require 'express'
 session = require('express-session')
 expressGraphQL = require('express-graphql')
@@ -11,8 +11,10 @@ bodyParser = require('body-parser')
 cookieParser = require('cookie-parser')
 
 
-reactRenderingService = "http://localhost:3000/"
-proxy = httpProxy.createProxyServer({})
+#reactRenderingService = "http://localhost:3000/"
+#proxy = httpProxy.createProxyServer({})
+
+
 app = express()
 
 
@@ -32,10 +34,18 @@ app.use session(
   saveUninitialized: false)
 
 app.use device.capture({parseUserAgent: yes})
-
-
 require('./auth/passport')(app)
+
+
+
+
 app.use '/auth', require('./routes/auth')
+myTest = (req, res, next) ->
+  console.log 'this is the target URL'
+  console.log req.url
+  console.log 'this is the user'
+  console.log req.user?.username
+  next()
 
 root =
   entry: (args, req) ->
@@ -43,21 +53,25 @@ root =
     deviceType: req.device.type
     ip: if req.ip.split('f:')?[1]? then req.ip.split('f:')[1] else ''
 
-handleRenderRequest = (request, response) ->
-  proxy.web request, response, { target: reactRenderingService }, (error) ->
-    console.error error
-    response.status(500).send 'Proxying failed for page rendering service'
-    return
-  return
-
-connect().then () ->
+connect().then () =>
   schema = require('./graphql/schema').getSchema()
   app.use '/graphql', expressGraphQL({
     schema: schema
     rootValue: root
     graphiql: yes
   })
-  app.use(handleRenderRequest)
+
+  app.use require('./routes/proxy')
+
+
+
+  #  app.get '/*', myTest
+#  app.use (request, response) =>
+#    proxy.web request, response, { target: reactRenderingService }, (error) ->
+#      console.error error
+#      response.status(500).send 'Proxying failed for page rendering service'
+#      return
+#    return
   app.listen 5000
 
 .catch (err) ->

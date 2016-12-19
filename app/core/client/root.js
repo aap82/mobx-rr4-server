@@ -1,18 +1,19 @@
 import '../../style.scss'
 import '../../styles/dist/semantic.min.css'
-import React, {Component, PropTypes} from 'react';
-import {BrowserRouter} from 'react-router';
+import BrowserRouter from 'react-router/BrowserRouter'
+import React from 'react';
 import { Provider } from 'mobx-react'
 import App from '../../App';
 
-export default class extends Component {
-  render() {
-    return (
-      <Provider {...this.props.stores}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </Provider>
-    );
-  }
-}
+const ClientRoot = ({stores}) => (
+
+    <BrowserRouter>
+      {({ router }) => (
+        <Provider {...stores}>
+          <App router={router}/>
+        </Provider>
+      )}
+    </BrowserRouter>
+
+);
+export default ClientRoot;

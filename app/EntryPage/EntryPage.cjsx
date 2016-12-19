@@ -7,8 +7,8 @@ LoginModal = require('../components/LoginModal').default
 Loading = require('react-loading')
 
 onLoginSubmit = ({username, password}) => actions.login(username, password)
-CurrentView = (observer(({entryPage}) => (
-    switch entryPage.currentView
+CurrentView = (observer(({store}) => (
+    switch store.currentView
       when 'Ready' then <Redirect to={{pathname: '/dashboard'}} />
       when 'Login' then <LoginModal onLogin={onLoginSubmit} />
       else <Loading type="spokes" color="#5BC0BE"/>)
@@ -26,15 +26,16 @@ class EntryPage extends React.Component
     return actions.onMount()
 
   render: ->
+    console.log @props
     {entryPage} = @props
     <div className="entry-page">
       <div className="entry-container">
-         <CurrentView entryPage={entryPage} />
+        <CurrentView store={entryPage} />
       </div>
     </div>
 
   onLoginSubmit = ({username, password}) => actions.login(username, password)
 
 
-`export default inject('entryPage')(EntryPage)`
+`export default inject('entryPage')(observer(EntryPage))`
 

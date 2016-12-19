@@ -55,12 +55,12 @@ server_dev = [
     __DEVELOPMENT__: true,
     __DEVTOOLS__: false
   })
-  new webpack.optimize.CommonsChunkPlugin({
-    names: ['vendor'],
-    minChunks: Infinity,
-    children: true,
-    async: true,
-  })
+#  new webpack.optimize.CommonsChunkPlugin({
+#    names: ['vendor'],
+#    minChunks: Infinity,
+#    children: true,
+#    async: true,
+#  })
 
 
 ]

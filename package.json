@@ -4,8 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev-old": "webpack-dashboard -- node server.js",
-    "start": "node server.js",
     "server": "nodemon ./server/index.js",
     "dev": "run-p development-build-server development-build-client development-prepare-server-build development-server-delayed",
     "development-prepare-server-build": "universal-webpack --settings ./webpack/universal-webpack-settings.js prepare",
@@ -26,7 +24,7 @@
       "env": {
         "NODE_PATH": "./app"
       },
-      "command": "nodemon ./app/core/server/start.js --watch ./build/server"
+      "command": "nodemon ./app/core/server/start.js --watch ./build/client"
     }
   },
   "dependencies": {

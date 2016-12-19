@@ -19,7 +19,7 @@ class Dashboard extends React.Component
           layout = {}
           layout = widget.position
           layout.i = widget.id
-          <div key={widget.id} data-grid={layout} style={background: "red"} >
+          <div key={widget.id} data-grid={layout} style={background: "green"} >
             {renderWidget(widget)}
           </div>
       }

@@ -12,7 +12,9 @@ loginAuthorized = (user) ->
   )
 
   entryPage.loginRequired = no
+  console.log('completed')
   entryPage.loginCompleted = yes
+
 
   return
 
@@ -27,12 +29,12 @@ loginRequired = ->
   return
 
 checkToken = (token) ->
-  axios.post('api/auth/token', {
+  axios.post('auth/token', {
     token: token
   }).then (res) ->
     entryPage.isLoading = no
     console.log 'this was the respone for check token'
-    test res.data.id
+#    test res.data.id
     return setTimeout((=> loginAuthorized(res.data.user)), 1000)
   .catch (err) ->
     entryPage.isLoading = no
@@ -43,7 +45,7 @@ checkToken = (token) ->
 
 exports.login = (username, password) ->
   loginSubmitted()
-  axios.post('api/auth/login', {
+  axios.post('auth/login', {
     username: username
     password: password
   }).then (res) =>
@@ -66,3 +68,5 @@ exports.onMount = () ->
 
 
 
+exports.ready = (router) ->
+  return router.transitionTo('/dashboard')

@@ -11,14 +11,14 @@ configuration =
   progress: true
   entry:
     app: paths.client_entry
-    vendor: [
-      'react'
-      'react-dom'
-      'react-router'
-      'mobx'
-      'mobx-react'
-      'lodash'
-    ]
+#    vendor: [
+#      'react'
+#      'react-dom'
+#      'react-router'
+#      'mobx'
+#      'mobx-react'
+#      'lodash'
+#    ]
 
   output:
     path: paths.client_build

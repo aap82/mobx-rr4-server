@@ -11,11 +11,11 @@ class MainApp extends React.Component
     super(props)
 
 
-  componentDidMount: => setTimeout((=> @props.app.show()), 1000)
+  componentDidMount: => requestAnimationFrame((=> @props.app.show()), 100)
 
   render: ->
-    {isVisible} = @props.app
-    <div className={'main-app-container ' + isVisible}>
+    {app} = @props
+    <div className={'main-app-container ' + app.isVisible}>
       <SideNav>
         <AppBar />
         <Dashboard />

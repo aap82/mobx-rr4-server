@@ -25,13 +25,18 @@ router.post '/login',  (req, res) ->
     if user and user.password is payload.password
       token = signToken payload
       req.login user, (err) ->
-        if err then return res.sendStatus 401
-        return res.json token: token
+        if err
+          console.log err
+          return res.sendStatus 401
+        else
+          return res.json token: token
+
     else
       return res.sendStatus 401
 
 
-router.post '/token', passport.authenticate('jwt', session: true), (req, res) ->
+router.post '/token', passport.authenticate('jwt', session: true), (req, res, next) ->
+  console.log req.user?
   return res.json id: req.user.id, user: req.user.username
 
 #router.post '/token', (req, res) ->

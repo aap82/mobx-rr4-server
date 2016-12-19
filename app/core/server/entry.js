@@ -11,9 +11,10 @@ import Html from './HTML';
 
 
 export default function (parameters) {
+  let x = 1;
   const app = new Express();
-  const disable_ssr = false;
   const port = 3000;
+
   app.use('/', Express.static(path.join(__ROOT_FOLDER__, 'build')));
 
   const server = new http.Server(app);
@@ -22,30 +23,24 @@ export default function (parameters) {
   const chunks = parameters.chunks();
 
   app.use((req, res) => {
-    const hydrateOnClient = () => {
-      res.send(
-        ReactDOM.renderToString(<Html assets={chunks} />)
-      );
-    };
 
     const context = createServerRenderContext();
     const result = context.getResult();
     const stores = configureStore();
     global._env = {};
 
-    if (disable_ssr) {
-      hydrateOnClient();
-      return;
-    }
-
+    console.log(req.url);
     const component = (
-      <Provider {...stores}>
+
         <ServerRouter
           location={req.url}
           context={context} >
+          <Provider {...stores}>
+
           <App />
+          </Provider>
         </ServerRouter>
-      </Provider>
+
     );
 
     const content = ReactDOM.renderToString(
@@ -56,6 +51,9 @@ export default function (parameters) {
       />
     );
 
+    console.log('--------------')
+    console.log(x);
+    x = x + 1;
     if (result.missed) {
       res.status(404);
     } else {
@@ -64,8 +62,8 @@ export default function (parameters) {
 
 
 
-
     res.send(`<!doctype html>\n${content}`);
+
   });
 
   server.listen(port, (error) => {

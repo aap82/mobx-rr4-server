@@ -28,7 +28,6 @@ module.exports = (app) ->
   )
 
   passport.use new JwtStrategy(params, (req, payload, done) ->
-    console.log payload
     User.findOne(where: 'username': payload.username).then (user) ->
       if !user?
         return done(new Error('User not found'), null)

@@ -8,7 +8,7 @@ plugins = getPlugins('client_dev')
 host = ['http://', getenv('DEV_SERVER_HOST'), ':', getenv('DEV_SERVER_PORT')].join('')
 
 config = getConfig({ development: true, css_bundle: true })
-config.devtool = 'inline-source-map'
+config.devtool = 'cheap-module-source-map'
 config.plugins.push plugin for plugin in plugins
 config.entry.app = [
   "webpack-dev-server/client?#{host}",
